@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 public class Receiver extends JPanel
 {
     private mainFrame mf;
-    private ArrayList<String[]> database;
     private DefaultListModel<String> model;
     private JList list;
     private JScrollPane scroll;
@@ -31,7 +30,6 @@ public class Receiver extends JPanel
         setBorder( new EmptyBorder( 5, 15, 5, 15 ) );
         
         this.mf = mf;
-        this.database = mf.database;
         
         
         JPanel p1 = new JPanel( new FlowLayout( FlowLayout.CENTER ) );
@@ -68,16 +66,16 @@ public class Receiver extends JPanel
                     
                     int count = 0;
                     
-                    for (int i = 0; i < database.size(); i++)
+                    for (int i = 0; i < mf.database.size(); i++)
                     {
-                        String[] s = database.get( i );
+                        String[] s = mf.database.get( i );
                         String information = "";
                         for (int j = 0; j < s.length; j++)
                         {
                             information += s[j] + " ; ";
                         }
                      
-                        if(s[0].contains( searchReference ))
+                        if(s[0].indexOf( searchReference ) != -1)
                         {
                             count++;
                             model.addElement( information );
